@@ -1,46 +1,84 @@
 import 'package:flutter/material.dart';
 
-class HelloKurdistan extends StatelessWidget {
-  const HelloKurdistan({Key? key}) : super(key: key);
+class HelloKurdistan extends StatefulWidget {
+  HelloKurdistan({Key? key}) : super(key: key);
+
+  @override
+  State<HelloKurdistan> createState() => _HelloKurdistanState();
+}
+
+class _HelloKurdistanState extends State<HelloKurdistan> {
+  List<String> listOfImages = [
+    'asset/ace.jpg',
+    'asset/sabo.jpg',
+    'asset/luffy.webp',
+  ];
+
+  int listIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.red,
-          centerTitle: true,
-          title: const Text(""),
-        ),
+        // backgroundColor: const Color(0xff0E0E0E),
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 35),
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Roj_emblem.svg/1200px-Roj_emblem.svg.png',
-                height: 325,
+              const SizedBox(
+                height: 50,
               ),
-              const SizedBox(height: 55),
-              const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Hello Kurdistan",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: SizedBox(
+                  width: 280,
+                  child: Image.asset(
+                    listOfImages[listIndex],
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 55,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: listOfImages.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          listIndex = index;
+                        });
+                      },
+                      child: SizedBox(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Card(
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
+                              listOfImages[index],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const Spacer(),
+              const Spacer(),
             ],
           ),
         ),
         bottomNavigationBar: Container(
-          height: 50,
-          color: Colors.green,
+          height: 70,
+          color: const Color(0xffF94701),
         ),
       ),
     );
