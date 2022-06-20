@@ -1,4 +1,4 @@
-# wecode_assignment_1
+# wecode_flutter_assignment
 
 A new Flutter project.
 
