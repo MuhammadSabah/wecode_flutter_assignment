@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HelloKurdistan extends StatefulWidget {
-  HelloKurdistan({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  Home({Key? key}) : super(key: key);
 
   @override
-  State<HelloKurdistan> createState() => _HelloKurdistanState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HelloKurdistanState extends State<HelloKurdistan> {
+class _HomeState extends State<Home> {
   List<String> listOfImages = [
     'asset/ace.jpg',
     'asset/sabo.jpg',
